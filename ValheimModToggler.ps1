@@ -4,16 +4,22 @@
 # Made by ncj - https://github.com/ncjsvr / Discord: ncj#001
 # Valheim Plus Development Team - https://valheim.plus/
 
-# Find Valheim
-$SteamPath = (Get-ItemProperty "HKCU:\SOFTWARE\Valve\Steam").SteamPath
-$GamePath = (Get-Content -Path $SteamPath\steamapps\appmanifest_892970.acf -TotalCount 5)[-1]
+# Set Where Valheim Is Installed
+# If you only have Steam installed to your C:\ drive you do not need to edit this.
+# You only need to edit this if you have Valheim installed to a seperate steam library
 
-echo "Steam Location: $SteamPath"
-echo "Game Location: $GamePath"
+$GamePath = ("C:\Program Files (x86)\Steam\steamapps\common\Valheim")
+
+
+# Don't Edit Below This Line
 
 # Assemblies
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName PresentationCore,PresentationFramework
+
+# Modern Style
+[System.Windows.Forms.Application]::EnableVisualStyles() 
+
 
 # Set Centre Screen
 $CenterScreen = [System.Windows.Forms.FormStartPosition]::CenterScreen;
@@ -23,11 +29,12 @@ Set-StrictMode -Version 2.0
 
 # Create Form
 $Form = New-Object system.Windows.Forms.Form
-$Form.Size = New-Object System.Drawing.Size(300,125)
+$Form.Size = New-Object System.Drawing.Size(300,140)
 $Form.Text = "Valheim Mod Toggler"
 $Form.TopMost = $True
 $Form.BackColor = "white"
 $Form.StartPosition = $CenterScreen;
+
 
 # Create Enable Button
 $btn_Enable = New-Object system.windows.Forms.Button
@@ -37,8 +44,8 @@ $btn_Enable.Width = 249
 $btn_Enable.Height = 30
 $btn_Enable.Add_MouseClick({
 
-    $filecontent = Get-Content C:\Users\nath\Desktop\Repos\Valheim-Mod-Toggler\doorstop_config.ini
-    $filecontent -replace 'enabled=false',"`enabled=true" | Set-Content C:\Users\nath\Desktop\Repos\Valheim-Mod-Toggler\doorstop_config.ini
+    $filecontent = Get-Content $GamePath\doorstop_config.ini
+    $filecontent -replace 'enabled=false',"`enabled=true" | Set-Content $GamePath\doorstop_config.ini
     [System.Windows.MessageBox]::Show('Valheim Mods Enabled')
     $form.Close()
 
@@ -52,26 +59,37 @@ $btn_Disable.Width = 249
 $btn_Disable.Height = 30
 $btn_Disable.Add_MouseClick({
 
-    $filecontent = Get-Content C:\Users\nath\Desktop\Repos\Valheim-Mod-Toggler\doorstop_config.ini
-    $filecontent -replace 'enabled=true',"`enabled=false" | Set-Content C:\Users\nath\Desktop\Repos\Valheim-Mod-Toggler\doorstop_config.ini
+    $filecontent = Get-Content $GamePath\doorstop_config.ini
+    $filecontent -replace 'enabled=true',"`enabled=false" | Set-Content $GamePath\doorstop_config.ini
     [System.Windows.MessageBox]::Show('Valheim Mods Disabled')
     $form.Close()
 
 })
 
-# Render Enable Button
+# Position Enable Button
 $btn_Enable.location = new-object system.drawing.point(17,5)
 $btn_Enable.Font = "Microsoft Sans Serif,10"
 $Form.controls.Add($btn_Enable)
 
-# Render Disable Button
+# Position Disable Button
 $btn_Disable.location = new-object system.drawing.point(17,45)
 $btn_Disable.Font = "Microsoft Sans Serif,10"
 $Form.controls.Add($btn_Disable)
+
+# Position Info
+$Info                            = New-Object system.Windows.Forms.Label
+$Info.text                       = "Created by ncj, Discord: ncj#0001"
+$Info.AutoSize                   = $true
+$Info.width                      = 25
+$Info.height                     = 10
+$Info.location                   = New-Object System.Drawing.Point(30,80)
+$Info.Font                       = New-Object System.Drawing.Font('Microsoft Sans Serif',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Info.ForeColor                  = [System.Drawing.ColorTranslator]::FromHtml("#000000")
+$Form.controls.AddRange(@($Info))
+
 
 # Render Form
 [void]$Form.ShowDialog()
 
 # Close Form
 $Form.Dispose()
-
