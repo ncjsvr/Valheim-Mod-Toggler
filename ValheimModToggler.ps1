@@ -29,7 +29,11 @@ Set-StrictMode -Version 2.0
 
 # Create Form
 $Form = New-Object system.Windows.Forms.Form
-$Form.Size = New-Object System.Drawing.Size(300,140)
+$Form.Size = New-Object System.Drawing.Size(290,140)
+$Form.minimumSize = New-Object System.Drawing.Size(290,140) 
+$Form.maximumSize = New-Object System.Drawing.Size(290,140) 
+$Form.FormBorderStyle = 'FixedS'
+$Form.MaximizeBox = $false
 $Form.Text = "Valheim Mod Toggler"
 $Form.TopMost = $True
 $Form.BackColor = "white"
@@ -82,8 +86,8 @@ $Info.text                       = "Created by ncj, Discord: ncj#0001"
 $Info.AutoSize                   = $true
 $Info.width                      = 25
 $Info.height                     = 10
-$Info.location                   = New-Object System.Drawing.Point(30,80)
-$Info.Font                       = New-Object System.Drawing.Font('Microsoft Sans Serif',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Info.location                   = New-Object System.Drawing.Point(55,80)
+$Info.Font                       = New-Object System.Drawing.Font('Microsoft Sans Serif',12,[System.Drawing.FontStyle]([System.Drawing.FontStyle]))
 $Info.ForeColor                  = [System.Drawing.ColorTranslator]::FromHtml("#000000")
 $Form.controls.AddRange(@($Info))
 
