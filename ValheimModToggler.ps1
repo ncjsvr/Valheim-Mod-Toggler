@@ -87,7 +87,6 @@ $Info.AutoSize                   = $true
 $Info.width                      = 25
 $Info.height                     = 10
 $Info.location                   = New-Object System.Drawing.Point(55,80)
-$Info.Font                       = New-Object System.Drawing.Font('Microsoft Sans Serif',12,[System.Drawing.FontStyle]([System.Drawing.FontStyle]))
 $Info.ForeColor                  = [System.Drawing.ColorTranslator]::FromHtml("#000000")
 $Form.controls.AddRange(@($Info))
 
