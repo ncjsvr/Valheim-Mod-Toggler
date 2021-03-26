@@ -1,5 +1,5 @@
 # Valheim-Mod-Toggler
-Simple Windows app to quickly enable or disable Valheim mods.<br>
+Simple Windows app (powershell) to quickly enable or disable Valheim mods.<br>
 It edits the doorstop_config.ini file which is used to load mods when valheim launches.<br>
 Mods can be enabled/disabled manually but this just speeds the process up a little bit.<br>
 It is also useful for people who perhaps aren't confident in manually doing it.<br>
