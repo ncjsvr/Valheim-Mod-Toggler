@@ -1,6 +1,6 @@
 # Valheim Mod Toggler
 # Enabled enabling / disabling Valheim mods easily and quickly
-# Version 0.3
+# Version 0.1
 # Made by ncj - https://github.com/ncjsvr / Discord: ncj#001
 # Valheim Plus Development Team - https://valheim.plus/
 
